@@ -23,7 +23,7 @@ local Section = Main:AddSection({
 Main:AddButton({
 	Name = "Scam",
 	Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/tradescamss/main/newscam"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB2.lua"))()
   	end    
 })
 
