@@ -9,7 +9,7 @@ local Window = Rayfield:CreateWindow({
 	LoadingTitle = "psx Hub",
 	LoadingSubtitle = "by shootr2.0",
 	ConfigurationSaving = {
-		Enabled = false,
+		Enabled = true,
 		FolderName = "PSX HUB-Config",
 		FileName = "Big Hub"
 	},
@@ -18,8 +18,8 @@ local Window = Rayfield:CreateWindow({
 		Title = "PSX HUB",
 		Subtitle = "Key System",
 		Note = "Join the discord (https://discord.gg/28TPYN9z)",
-		SaveKey = true,
-		Key = "4785yr5du6edgjuf6jiuedu"
+		SaveKey = false,
+		Key = "4785yr5du6edgjuf6jiuedu",
 	}
 })
 
@@ -38,8 +38,6 @@ local Credits = Window:CreateTab("Credits", 4483362458) -- Title, Image
 local Label = Credits:CreateLabel("Script Made By Shooter2.0")
 local Label = Credits:CreateLabel("Script Owner shooter2.0")
 local Label = Credits:CreateLabel("Discord-PSX HUB")
-local Label = Credits:CreateLabel("Discord Link")
-local Label = Credits:CreateLabel("https://discord.gg/4e8NcdEtt9")
 
 local Keybind = Tab:CreateKeybind({
     Name = "Trade-Scam Keybind",
@@ -66,3 +64,10 @@ local Keybind = Settings:CreateKeybind({
 	end,
 })
 
+local Button = Credits:CreateButton({
+	Name = "Discord-Link press the button to copy link",
+	Callback = function()
+		setclipboard("https://discord.gg/4e8NcdEtt9")
+        Rayfield:Notify("Notification", "Copied Discord Invite to your clipboard", 4483362458)
+	end,
+})
