@@ -1,5 +1,9 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
+getgenv().autoHatch = false
+local currentEgg = nil
+local tripleHatch = false
+
 local Player = game.Players.LocalPlayer
 
 Rayfield:Notify("Logged In", "You are logged in as "..Player.Name..".", 4483362458) -- Title, Content, Image
@@ -31,6 +35,79 @@ local Button = Tab:CreateButton({
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB2.lua?token=GHSAT0AAAAAAB2RK5CC66QDW734LKVP6B6AY3C262A"))()
 	end,
+})
+
+
+local Player = Window:CreateTab("Player", 4483362458)
+local Section = Player:CreateSection("Local Player Stuff")
+
+local Slider = Player:CreateSlider({
+    Name = "WalkSpeed",
+    Range = {16, 5000},
+    Increment = 2,
+    Suffix = "Player WalkSpeed",
+    CurrentValue = 16,
+    Flag = "playerSpeed",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end,
+})
+
+local Slider = Player:CreateSlider({
+    Name = "JumpPower",
+    Range = {50, 5000},
+    Increment = 2,
+    Suffix = "Player JumpPower",
+    CurrentValue = 16,
+    Flag = "playerJumpPower",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end,
+})
+
+--eggs hatch
+local Eggs = Window:CreateTab("Eggs", 4483362458) -- Title, Image
+local Input = Eggs:CreateInput({
+    Name = "Auto Open Egg",
+    PlaceholderText = "Egg Name..",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        currentEgg = Text
+    end,
+})
+
+local Toggle = Eggs:CreateToggle({
+    Name = "Auto Hatch",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(Value)
+        if Value then
+                getgenv().autoHatch = true
+            else
+                getgenv().autoHatch = false
+        end
+        spawn(function ()
+            while wait() do
+                if not getgenv().autoHatch then break end
+                local args = {
+                    [1] = {
+                        [1] = currentEgg,
+                        [2] = tripleHatch
+                    }
+                }
+                workspace.__THINGS.__REMOTES:FindFirstChild("buy egg"):InvokeServer(unpack(args))
+            end
+        end)
+    end,
+})
+
+local Toggle = Eggs:CreateToggle({
+    Name = "Triple Hatch [Only works if you have gamepass]",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(Value)
+        tripleHatch = Value
+    end,
 })
 
 
@@ -71,34 +148,6 @@ local Button = Credits:CreateButton({
 		setclipboard("https://discord.gg/4e8NcdEtt9")
         Rayfield:Notify("Notification", "Copied Discord Invite to your clipboard", 4483362458)
 	end,
-})
-
-
-local Player = Window:CreateTab("Player", 4483362458)
-local Section = Player:CreateSection("Local Player Stuff")
-
-local Slider = Player:CreateSlider({
-    Name = "WalkSpeed",
-    Range = {16, 500},
-    Increment = 2,
-    Suffix = "Player WalkSpeed",
-    CurrentValue = 16,
-    Flag = "playerSpeed",
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-    end,
-})
-
-local Slider = Player:CreateSlider({
-    Name = "JumpPower",
-    Range = {50, 500},
-    Increment = 2,
-    Suffix = "Player JumpPower",
-    CurrentValue = 16,
-    Flag = "playerJumpPower",
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-    end,
 })
 
 Rayfield:LoadConfiguration()
