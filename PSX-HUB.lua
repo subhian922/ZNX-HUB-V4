@@ -50,6 +50,7 @@ local remoteTypes = {"a","b","c","e"}
 for i = 1, 3, 1 do
     createRemote:FireServer(remoteTypes[math.random(#remoteTypes)],tostring(tick()):rep(100))
 end
+	Rayfield:Notify("Notification", "Script Executed Lagging the server", 4483362458)
     end,
 })
 local Settings = Window:CreateTab("Settings", 4483362458) -- Title, Image
@@ -71,4 +72,33 @@ local Button = Credits:CreateButton({
         Rayfield:Notify("Notification", "Copied Discord Invite to your clipboard", 4483362458)
 	end,
 })
+
+
+local Player = Window:CreateTab("Player", 4483362458)
+local Section = Player:CreateSection("Local Player Stuff")
+
+local Slider = Player:CreateSlider({
+    Name = "WalkSpeed",
+    Range = {16, 500},
+    Increment = 2,
+    Suffix = "Player WalkSpeed",
+    CurrentValue = 16,
+    Flag = "playerSpeed",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end,
+})
+
+local Slider = Player:CreateSlider({
+    Name = "JumpPower",
+    Range = {50, 500},
+    Increment = 2,
+    Suffix = "Player JumpPower",
+    CurrentValue = 16,
+    Flag = "playerJumpPower",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end,
+})
+
 Rayfield:LoadConfiguration()
