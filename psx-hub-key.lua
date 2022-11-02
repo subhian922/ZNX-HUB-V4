@@ -13,7 +13,7 @@ _G.Key = "747gfhsjhf4hjdbvso4tjai"
 _G.KeyInput = "string"
 
 function MakeScriptHub()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB2.lua?token=GHSAT0AAAAAAB2RK5CDZ3OG5STX2TITPMG2Y3C236Q"))()
 end
 
 function CorrectKeyNotification()
