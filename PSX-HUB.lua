@@ -1,53 +1,68 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
 local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "PSX CAT", HidePremium = false, SaveConfig = true, IntroText = "PSX CAT"})
 
-OrionLib:MakeNotification({
-	Name = "Logged in",
-	Content = "You Are Logged In As "..Player.Name..".",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+Rayfield:Notify("Logged In", "You are logged in as "..Player.Name..".", 4483362458) -- Title, Content, Image
+
+local Window = Rayfield:CreateWindow({
+	Name = "PSX HUB-TRADE-SCAM",
+	LoadingTitle = "psx Hub",
+	LoadingSubtitle = "by shootr2.0",
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = "PSX HUB-Config",
+		FileName = "Big Hub"
+	},
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "PSX HUB",
+		Subtitle = "Key System",
+		Note = "Join the discord (https://discord.gg/28TPYN9z)",
+		SaveKey = true,
+		Key = "4785yr5du6edgjuf6jiuedu"
+	}
 })
 
+local Tab = Window:CreateTab("Trade-Scam", 4483362458) -- Title, Image
 
---main
-local Main = Window:MakeTab({
-	Name = "Trade Scam",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-local Section = Main:AddSection({
-	Name = "Trade scam"
-})
-
-Main:AddButton({
-	Name = "Scam",
+local Section = Tab:CreateSection("Please Press Trade Scam When Someone Hits Ready Then 2times Press Ready")
+local Button = Tab:CreateButton({
+	Name = "Trade-Scam",
 	Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB2.lua?token=GHSAT0AAAAAAB2RK5CC66QDW734LKVP6B6AY3C262A"))()
-  	end    
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/subhian922/PSX-HUB-2/main/PSX-HUB2.lua?token=GHSAT0AAAAAAB2RK5CC66QDW734LKVP6B6AY3C262A"))()
+	end,
 })
 
---Credits
-local Credits = Window:MakeTab({
-    Name = "Credits",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
+
+local Credits = Window:CreateTab("Credits", 4483362458) -- Title, Image
+local Label = Credits:CreateLabel("Script Made By Shooter2.0")
+local Label = Credits:CreateLabel("Script Owner shooter2.0")
+local Label = Credits:CreateLabel("Discord-PSX HUB")
+local Label = Credits:CreateLabel("Discord Link")
+local Label = Credits:CreateLabel("https://discord.gg/4e8NcdEtt9")
+
+local Keybind = Tab:CreateKeybind({
+    Name = "Trade-Scam Keybind",
+    CurrentKeybind = "Q",
+    HoldToInteract = false,
+    Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Keybind)
+        local createRemote = workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("MAIN")
+local remoteTypes = {"a","b","c","e"}
+for i = 1, 3, 1 do
+    createRemote:FireServer(remoteTypes[math.random(#remoteTypes)],tostring(tick()):rep(100))
+end
+    end,
+})
+local Settings = Window:CreateTab("Settings", 4483362458) -- Title, Image
+local Label = Settings:CreateLabel("Destroy GUI")
+local Keybind = Settings:CreateKeybind({
+	Name = "Destroy Gui Key Bind",
+	CurrentKeybind = "LeftControl",
+	HoldToInteract = false,
+	Flag = "Keybind2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Keybind)
+		Rayfield:Destroy()
+	end,
 })
 
-local Section = Credits:AddSection({
-	Name = "Owner"
-})
-
-Credits:AddLabel("Shooter2.0")
-
-local Section = Credits:AddSection({
-	Name = "Discord"
-})
-
-Credits:AddLabel("PSX HUB")
-
-local Section = Credits:AddSection({
-	Name = "Discord link"
-})
-
-Credits:AddLabel("https://discord.gg/4e8NcdEtt9")
