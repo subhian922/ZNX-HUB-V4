@@ -11,7 +11,7 @@ local Window = Rayfield:CreateWindow({
 	ConfigurationSaving = {
 		Enabled = true,
 		FolderName = "PSX HUB-Config",
-		FileName = "Big Hub"
+		FileName = "Settings Config"
 	},
 	KeySystem = true, -- Set this to true to use our key system
 	KeySettings = {
@@ -43,7 +43,7 @@ local Keybind = Tab:CreateKeybind({
     Name = "Trade-Scam Keybind",
     CurrentKeybind = "Q",
     HoldToInteract = false,
-    Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "LagKey", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Keybind)
         local createRemote = workspace:WaitForChild("__THINGS"):WaitForChild("__REMOTES"):WaitForChild("MAIN")
 local remoteTypes = {"a","b","c","e"}
@@ -58,7 +58,7 @@ local Keybind = Settings:CreateKeybind({
 	Name = "Destroy Gui Key Bind",
 	CurrentKeybind = "LeftControl",
 	HoldToInteract = false,
-	Flag = "Keybind2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Flag = "GUI-Destroy", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
 	Callback = function(Keybind)
 		Rayfield:Destroy()
 	end,
@@ -71,3 +71,4 @@ local Button = Credits:CreateButton({
         Rayfield:Notify("Notification", "Copied Discord Invite to your clipboard", 4483362458)
 	end,
 })
+Rayfield:LoadConfiguration()
